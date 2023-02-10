@@ -5,12 +5,13 @@ async function getAllUser() {
     // 2. เรียกใช้ฟังก์ชัน ApiDelay()
     // 3. หากเรียกฟังก์ชันสำเร็จให้ (status: 200) ให้นำ message แสดงในกล่องข้อความ
     // 4. หากเรียกฟังก์ชันไม่สำเร็จ (message: "SERVER ERROR") ให้นำ message แสดงในกล่องข้อความ
+    
     try {
         const temp = await ApiDelay()
         console.log(temp)
         document.getElementById("TA").innerHTML = temp.message
     } catch (error) {
-        document.getElementById("TA").innerHTML = temp.message
+        document.getElementById("TA").innerHTML = error.message
     }
 }
 

@@ -9,14 +9,15 @@ function getDogDemo(url) {
     dogTime.innerHTML = count
     if (count == 0) {
       clearInterval(interval)
+      getAPI('https://dog.ceo/api/breeds/image/random', (res) => {
+
+        dogImg.src = res.message
+
+      }, () => { })
     }
+
   }, 1000)
 
-  getAPI('https://dog.ceo/api/breeds/image/random', (res) => {
-    setTimeout(() => {
-      dogImg.src = res.message
-    }, 10000)
-  }, () => { })
 }
 
 
@@ -129,9 +130,11 @@ function task(id) {
   })
 
   myPromise.then(
-    function (value) { console.log(value); },
-    function (error) { console.log(error); }
-  );
+    function (value) { console.log(value); }
+
+  ).catch(function (error) { console.log(error); })
+
+
   return myPromise
 }
 
@@ -160,7 +163,7 @@ function checkAuth(password) {
     function (value) {
       alert(value);
       getAPI('https://api.thecatapi.com/v1/images/search', (res) => {
-          cat.src = res[0].url
+        cat.src = res[0].url
       }, () => { })
     },
     function (error) { alert(error); }
